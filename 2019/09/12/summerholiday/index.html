@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="Chinese" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2019暑期答辩 - Blue-H</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Blue-H,"> 
+    <meta name="description" content="#基于Python的泡泡堂小游戏
+##开发语言：Python
+##主要模块：pygame答辩全部基于python语言，假期自学了一下Python做了这个游戏，主要用了Python的pygame模块，,"> 
+    <meta name="author" content="����"> 
+    <link rel="alternative" href="atom.xml" title="Blue-H" type="application/atom+xml"> 
+    <link rel="icon" href="/img/logo.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Blue-H</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">2019暑期答辩</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">2019暑期答辩</h1>
+        <div class="stuff">
+            <span>九月 12, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Python/">Python</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>#<strong>基于Python的泡泡堂小游戏</strong></p>
+<p>##开发语言：Python</p>
+<p>##主要模块：pygame<br>答辩全部基于python语言，假期自学了一下Python做了这个游戏，主要用了Python的pygame模块，主要功能如下：</p>
+<ol>
+<li>游戏背景音乐的播放与暂停</li>
+</ol>
+<ul>
+<li>游戏规则弹框出现</li>
+<li>计时与计分（主要是游戏中炸弹刷新，生命值与分数计算）</li>
+<li>游戏中返回菜单</li>
+<li>炸弹爆炸音效</li>
+<li>游戏关卡选择</li>
+</ul>
+<hr>
+<p>##答辩内容<br>建立英雄类</p>
+<pre><code>class Hero(pygame.sprite.Sprite):
+def __init__(self, imagepaths, coordinate, blocksize, map_parser, **kwargs):
+    pygame.sprite.Sprite.__init__(self)
+    self.imagepaths = imagepaths
+    self.image = pygame.image.load(imagepaths[-1])
+    self.image = pygame.transform.scale(self.image, (blocksize, blocksize))
+    self.rect = self.image.get_rect()
+    self.rect.left, self.rect.top = coordinate[0] * blocksize, coordinate[1] * blocksize
+    self.coordinate = coordinate
+    self.blocksize = blocksize
+    self.map_parser = map_parser
+    self.hero_name = kwargs.get(&apos;hero_name&apos;)
+    self.health_value = 50
+    self.source_value = 0
+    self.bomb_cooling_time = 1000
+    self.bomb_cooling_count = 0
+    self.randommove_cooling_time = 80
+    self.randommove_cooling_count = 0
+#角色移动
+def move(self, direction):
+    self.__updateImage(direction)
+    if direction == &apos;left&apos;:
+        if self.coordinate[0]-1 &lt; 0 or self.map_parser.getElemByCoordinate([self.coordinate[0]-1, self.coordinate[1]]) in [&apos;w&apos;, &apos;x&apos;, &apos;z&apos;]:
+            return False
+        self.coordinate[0] = self.coordinate[0] - 1
+    elif direction == &apos;right&apos;:
+        if self.coordinate[0]+1 &gt;= self.map_parser.width or self.map_parser.getElemByCoordinate([self.coordinate[0]+1, self.coordinate[1]]) in [&apos;w&apos;, &apos;x&apos;, &apos;z&apos;]:
+            return False
+        self.coordinate[0] = self.coordinate[0] + 1
+    elif direction == &apos;up&apos;:
+        if self.coordinate[1]-1 &lt; 0 or self.map_parser.getElemByCoordinate([self.coordinate[0], self.coordinate[1]-1]) in [&apos;w&apos;, &apos;x&apos;, &apos;z&apos;]:
+            return False
+        self.coordinate[1] = self.coordinate[1] - 1
+    elif direction == &apos;down&apos;:
+        if self.coordinate[1]+1 &gt;= self.map_parser.height or self.map_parser.getElemByCoordinate([self.coordinate[0], self.coordinate[1]+1]) in [&apos;w&apos;, &apos;x&apos;, &apos;z&apos;]:
+            return False
+        self.coordinate[1] = self.coordinate[1] + 1
+    else:
+        raise ValueError(&apos;Unknow direction &lt;%s&gt;...&apos; % direction)
+    self.rect.left, self.rect.top = self.coordinate[0] * self.blocksize, self.coordinate[1] * self.blocksize
+    return True
+</code></pre><p>通过类的设定赋予事务属性，其余还有食物类，炸弹类，墙类等。</p>
+<pre><code>def Interface(screen,  mode=&apos;game_start&apos;,source=0,t=0):
+pygame.display.set_mode((450, 350))
+background = pygame.image.load(r&quot;images/myhero/timg.jfif&quot;)
+if mode == &apos;game_start&apos;:
+    clock = pygame.time.Clock()
+    while True:
+        screen.blit(background,(0,0))
+        button_10 = Buttonm(screen, (-20, 5), &apos;P&apos;)
+        button_11 = Buttonm(screen, (300, 5), &apos;||&apos;)
+        button_1 = Button(screen, (130, 80), &apos;START&apos;)
+        button_3 = Button(screen, (130, 140), &apos;HELP&apos;)
+        button_2 = Button(screen, (130, 200), &apos;CLOSE&apos;)
+        button_c1 = Buttonc(screen, (140, 260), &apos;1&apos;)
+        button_c2 = Buttonc(screen, (200, 260), &apos;2&apos;)
+        button_c3 = Buttonc(screen, (260, 260), &apos;3&apos;)
+        for event in pygame.event.get():
+            if button_1.collidepoint(pygame.mouse.get_pos()):
+                Button(screen, (130, 80), &apos;START&apos;, (0,0,0))
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit(-1)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                #bgm控制
+                if button_10.collidepoint(pygame.mouse.get_pos()):
+                    pygame.mixer.music.stop()
+                if button_11.collidepoint(pygame.mouse.get_pos()):
+                    pygame.mixer.music.load(&apos;bgm/qiusuo.mp3&apos;)
+                    pygame.mixer.music.play(-1, 0.0)
+                if button_1.collidepoint(pygame.mouse.get_pos()):
+                    return -1
+                elif button_2.collidepoint(pygame.mouse.get_pos()):
+                    pygame.quit()
+                    sys.exit(-1)
+                elif button_c1.collidepoint(pygame.mouse.get_pos()):
+                    return 0
+                elif button_c2.collidepoint(pygame.mouse.get_pos()):
+                    return 1
+                elif button_c3.collidepoint(pygame.mouse.get_pos()):
+                    return 2
+        pygame.display.update()
+        clock.tick(30)
+</code></pre><p>设置初始界面的一系列按钮，其中通过返回值返回关卡数以达到选择关卡的功能。</p>
+<pre><code>pos_x = showText(screen, pygame.font.SysFont(&apos;font&apos;, 20), text=ourhero.hero_name+str(ourhero.health_value), color=(175, 238, 238), position=[5, 5])
+for hero in aihero_sprite_group:
+    pos_x, pos_y = pos_x+15, 5
+    pos_x = showText(screen, pygame.font.SysFont(&apos;font&apos;, 20), text=hero.hero_name+str(hero.health_value), color=(175, 238, 238), position=[pos_x, pos_y])
+if ourhero.health_value &lt;= 0:
+    is_win_flag = False
+    break
+for hero in aihero_sprite_group:
+    if hero.health_value &lt;= 0:
+        aihero_sprite_group.remove(hero)
+if len(aihero_sprite_group) == 0:
+    is_win_flag = True
+    break
+# 右下角添加分数
+source_x = showText(screen, pygame.font.SysFont(&apos;font&apos;, 25), text=ourhero.hero_name+str(ourhero.source_value), color=(175, 238, 238), position=[420, 330])
+</code></pre><p>通过计时器对英雄生命值以及所获得分数进行刷新并显示在相应位置</p>
+<hr>
+<p>#####主要使用模块</p>
+<ol>
+<li>Pygame.mixer 混音器的制作,通过此模块制作了游戏背景音乐以及炸弹的爆炸音效, 同时使用此模块控制背景音乐开关。</li>
+<li>Pygame.display 控制游戏界面的显示, 即相关的开始界面,切换页面, 结束页面。</li>
+<li>Pygame.image 该模块控制游戏背景图, 人物动作图, 炸弹爆炸效果图相关图片的加载以及使用。<br>#####学习总结</li>
+<li>刚开始学python的时候主要是一些导包的问题，因为我上手就是用pycharm写程序，导致一些在pycharm上没有的包就很难搞，后来才慢慢学着用pip导包。做爬虫练习感觉还是挺好玩的，爬取一些歌曲还有做了截图翻译的一点东西。</li>
+<li>在做答辩的时候一直想着做一个比较好玩的游戏，这次的游戏本来之前感觉也做的不太好，但是来之后学长给我提了一些建议，感觉改完之后就好玩多了。</li>
+<li>这次学完之后，感觉自己对爬虫还有python语法一些知识有了一定了解，做游戏也学到了一些制作游戏的风格还有格式。</li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="http://domain.com/awesome.mp3">
+            </audio>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r="git@github.com:Blue-H/Blue.github.io.git" data-o="Blue-H" data-a="Blue-H" data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

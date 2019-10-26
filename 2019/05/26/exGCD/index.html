@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="Chinese" class="loading">
+<html lang="zh-Hans" class="loading">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="#GCD快乐水
-##描述
-Wh学长喝完了快乐水之后意识到该去减肥跑步了，然后去了操场，发现lly 和 hwj已经在跑步了，lly已经跑了b 米，然后每跑a米停下休息一下，忽视休息时间，hwj已经跑了,"> 
-    <meta name="author" content="����"> 
+    <meta name="description" content="GCD快乐水描述Wh学长喝完了快乐水之后意识到该去减肥跑步了，然后去了操场，发现lly 和 hwj已经在跑步了，lly已经跑了b 米，然后每跑a米停下休息一下，忽视休息时间，hwj已经跑了d米，每跑,"> 
+    <meta name="author" content="Blue-H"> 
     <link rel="alternative" href="atom.xml" title="Blue-H" type="application/atom+xml"> 
     <link rel="icon" href="/img/logo.png"> 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
@@ -64,26 +62,56 @@ Wh学长喝完了快乐水之后意识到该去减肥跑步了，然后去了操
 
         </div>
         <div class="content markdown">
-            <p>#GCD快乐水</p>
-<p>##描述</p>
-<p>Wh学长喝完了快乐水之后意识到该去减肥跑步了，然后去了操场，发现lly 和 hwj已经在跑步了，lly已经跑了b 米，然后每跑a米停下休息一下，忽视休息时间，hwj已经跑了d米，每跑c米休息一下，wh想在他们跑到同一长度并且在休息的时候加入他们，请问最少是在多少米处wh可以加入他们</p>
-<p>##输入</p>
-<p>第一行输入两个整数a，b，第一行输入两个整数c，d(a,b,c,d&lt;5∗108a,b,c,d &lt; 5*10^{8}a,b,c,d&lt;5∗108)</p>
-<p>##输出</p>
-<p>最短米处（如果没有，wh就不用跑了，输出happy）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int x=0;</span><br><span class="line">int y=0;</span><br><span class="line">	</span><br><span class="line">int exgcd(int n , int m , int &amp;x , int &amp;y)&#123;</span><br><span class="line">//	cout&lt;&lt;n&lt;&lt;&apos;*&apos;&lt;&lt;m&lt;&lt;endl;</span><br><span class="line">	if(m==0) &#123;</span><br><span class="line">		x=1;</span><br><span class="line">		y=0;</span><br><span class="line">		return n;</span><br><span class="line">	&#125;</span><br><span class="line">	int ans = exgcd(m , n%m , x , y);</span><br><span class="line">	int temp = x;</span><br><span class="line">//	cout&lt;&lt;temp&lt;&lt;endl;</span><br><span class="line">	x = y;</span><br><span class="line">	y=temp - n/m*y;</span><br><span class="line">	return ans; </span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	int a , b;</span><br><span class="line">	int c , d;</span><br><span class="line">	cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;</span><br><span class="line">	if( b &lt; d ) swap( b , d ) ,swap( a , c );</span><br><span class="line">	int t=exgcd(a , c , x , y);</span><br><span class="line">	int w=d-b;</span><br><span class="line">	if( w% t != 0 ) cout&lt;&lt;&quot;happy&quot;&lt;&lt;endl;</span><br><span class="line">	else&#123;</span><br><span class="line">        x *= w /t;</span><br><span class="line">        int b1 = c / t;</span><br><span class="line">        x = ( x % b1 + b1 ) % b1;</span><br><span class="line">		cout&lt;&lt;x * a + b&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
+            <h2 id="GCD快乐水"><a href="#GCD快乐水" class="headerlink" title="GCD快乐水"></a>GCD快乐水</h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>Wh学长喝完了快乐水之后意识到该去减肥跑步了，然后去了操场，发现lly 和 hwj已经在跑步了，lly已经跑了b 米，然后每跑a米停下休息一下，忽视休息时间，hwj已经跑了d米，每跑c米休息一下，wh想在他们跑到同一长度并且在休息的时候加入他们，请问最少是在多少米处wh可以加入他们</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>第一行输入两个整数a，b，第一行输入两个整数c，d(a,b,c,d&lt;5∗108a,b,c,d &lt; 5*10^{8}a,b,c,d&lt;5∗108)</p>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>最短米处（如果没有，wh就不用跑了，输出happy）</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int x=0;
+int y=0;
+
+int exgcd(int n , int m , int &amp;x , int &amp;y){
+//    cout&lt;&lt;n&lt;&lt;&apos;*&apos;&lt;&lt;m&lt;&lt;endl;
+    if(m==0) {
+        x=1;
+        y=0;
+        return n;
+    }
+    int ans = exgcd(m , n%m , x , y);
+    int temp = x;
+//    cout&lt;&lt;temp&lt;&lt;endl;
+    x = y;
+    y=temp - n/m*y;
+    return ans; 
+}
+int main(){
+    int a , b;
+    int c , d;
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;
+    if( b &lt; d ) swap( b , d ) ,swap( a , c );
+    int t=exgcd(a , c , x , y);
+    int w=d-b;
+    if( w% t != 0 ) cout&lt;&lt;&quot;happy&quot;&lt;&lt;endl;
+    else{
+        x *= w /t;
+        int b1 = c / t;
+        x = ( x % b1 + b1 ) % b1;
+        cout&lt;&lt;x * a + b&lt;&lt;endl;
+    }
+    return 0;
+</code></pre><ul>
 <li>注意长度问题不能用int类型</li>
 <li>可以借鉴板子直接板子操作</li>
 </ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="http://domain.com/awesome.mp3">
+                <source type="audio/mpeg" src="https://link.hhtjim.com/163/448393260.mp3">
             </audio>
             
         </div>
         
-    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r="git@github.com:Blue-H/Blue.github.io.git" data-o="Blue-H" data-a="Blue-H" data-d="false">查看评论</div>
 
 
     </div>

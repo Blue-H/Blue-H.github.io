@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="Chinese" class="loading">
+<html lang="zh-Hans" class="loading">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="#基于Python的泡泡堂小游戏
-##开发语言：Python
-##主要模块：pygame答辩全部基于python语言，假期自学了一下Python做了这个游戏，主要用了Python的pygame模块，,"> 
-    <meta name="author" content="����"> 
+    <meta name="description" content="基于Python的泡泡堂小游戏开发语言：Python主要模块：pygame答辩全部基于python语言，假期自学了一下Python做了这个游戏，主要用了Python的pygame模块，主要功能如下：,"> 
+    <meta name="author" content="Blue-H"> 
     <link rel="alternative" href="atom.xml" title="Blue-H" type="application/atom+xml"> 
     <link rel="icon" href="/img/logo.png"> 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
@@ -59,14 +57,12 @@
         <div class="stuff">
             <span>九月 12, 2019</span>
             
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Python/">Python</a></li></ul>
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Python/">Python</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/答辩作品/">答辩作品</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <p>#<strong>基于Python的泡泡堂小游戏</strong></p>
-<p>##开发语言：Python</p>
-<p>##主要模块：pygame<br>答辩全部基于python语言，假期自学了一下Python做了这个游戏，主要用了Python的pygame模块，主要功能如下：</p>
+            <h2 id="基于Python的泡泡堂小游戏"><a href="#基于Python的泡泡堂小游戏" class="headerlink" title="基于Python的泡泡堂小游戏"></a><strong>基于Python的泡泡堂小游戏</strong></h2><h4 id="开发语言：Python"><a href="#开发语言：Python" class="headerlink" title="开发语言：Python"></a>开发语言：Python</h4><h4 id="主要模块：pygame"><a href="#主要模块：pygame" class="headerlink" title="主要模块：pygame"></a>主要模块：pygame</h4><p>答辩全部基于python语言，假期自学了一下Python做了这个游戏，主要用了Python的pygame模块，主要功能如下：</p>
 <ol>
 <li>游戏背景音乐的播放与暂停</li>
 </ol>
@@ -78,7 +74,7 @@
 <li>游戏关卡选择</li>
 </ul>
 <hr>
-<p>##答辩内容<br>建立英雄类</p>
+<h4 id="答辩内容"><a href="#答辩内容" class="headerlink" title="答辩内容"></a>答辩内容</h4><p>建立英雄类</p>
 <pre><code>class Hero(pygame.sprite.Sprite):
 def __init__(self, imagepaths, coordinate, blocksize, map_parser, **kwargs):
     pygame.sprite.Sprite.__init__(self)
@@ -97,7 +93,7 @@ def __init__(self, imagepaths, coordinate, blocksize, map_parser, **kwargs):
     self.bomb_cooling_count = 0
     self.randommove_cooling_time = 80
     self.randommove_cooling_count = 0
-#角色移动
+# 角色移动
 def move(self, direction):
     self.__updateImage(direction)
     if direction == &apos;left&apos;:
@@ -143,7 +139,7 @@ if mode == &apos;game_start&apos;:
                 pygame.quit()
                 sys.exit(-1)
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                #bgm控制
+                # bgm控制
                 if button_10.collidepoint(pygame.mouse.get_pos()):
                     pygame.mixer.music.stop()
                 if button_11.collidepoint(pygame.mouse.get_pos()):
@@ -180,11 +176,10 @@ if len(aihero_sprite_group) == 0:
 source_x = showText(screen, pygame.font.SysFont(&apos;font&apos;, 25), text=ourhero.hero_name+str(ourhero.source_value), color=(175, 238, 238), position=[420, 330])
 </code></pre><p>通过计时器对英雄生命值以及所获得分数进行刷新并显示在相应位置</p>
 <hr>
-<p>#####主要使用模块</p>
-<ol>
+<h2 id="主要使用模块"><a href="#主要使用模块" class="headerlink" title="主要使用模块"></a>主要使用模块</h2><ol>
 <li>Pygame.mixer 混音器的制作,通过此模块制作了游戏背景音乐以及炸弹的爆炸音效, 同时使用此模块控制背景音乐开关。</li>
 <li>Pygame.display 控制游戏界面的显示, 即相关的开始界面,切换页面, 结束页面。</li>
-<li>Pygame.image 该模块控制游戏背景图, 人物动作图, 炸弹爆炸效果图相关图片的加载以及使用。<br>#####学习总结</li>
+<li>Pygame.image 该模块控制游戏背景图, 人物动作图, 炸弹爆炸效果图相关图片的加载以及使用。<h2 id="学习总结"><a href="#学习总结" class="headerlink" title="学习总结"></a>学习总结</h2></li>
 <li>刚开始学python的时候主要是一些导包的问题，因为我上手就是用pycharm写程序，导致一些在pycharm上没有的包就很难搞，后来才慢慢学着用pip导包。做爬虫练习感觉还是挺好玩的，爬取一些歌曲还有做了截图翻译的一点东西。</li>
 <li>在做答辩的时候一直想着做一个比较好玩的游戏，这次的游戏本来之前感觉也做的不太好，但是来之后学长给我提了一些建议，感觉改完之后就好玩多了。</li>
 <li>这次学完之后，感觉自己对爬虫还有python语法一些知识有了一定了解，做游戏也学到了一些制作游戏的风格还有格式。</li>
@@ -192,12 +187,12 @@ source_x = showText(screen, pygame.font.SysFont(&apos;font&apos;, 25), text=ourh
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="http://domain.com/awesome.mp3">
+                <source type="audio/mpeg" src="https://link.hhtjim.com/163/429459041.mp3">
             </audio>
             
         </div>
         
-    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r="git@github.com:Blue-H/Blue.github.io.git" data-o="Blue-H" data-a="Blue-H" data-d="false">查看评论</div>
 
 
     </div>
